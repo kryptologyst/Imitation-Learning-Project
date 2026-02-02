@@ -1,0 +1,49 @@
+# Default configuration for imitation learning experiments
+
+# Environment settings
+env:
+  name: "CartPole-v1"
+  seed: 42
+
+# Data collection settings
+data:
+  num_expert_episodes: 100
+  max_steps_per_episode: 1000
+  deterministic_expert: true
+
+# Training settings
+training:
+  num_epochs: 100
+  batch_size: 64
+  learning_rate: 1e-3
+  device: "auto"
+
+# Algorithm-specific settings
+algorithms:
+  behavioral_cloning:
+    learning_rate: 1e-3
+    hidden_dims: [64, 64]
+    dropout_rate: 0.1
+    
+  gail:
+    learning_rate_policy: 3e-4
+    learning_rate_discriminator: 1e-3
+    hidden_dims: [64, 64]
+    
+  airl:
+    learning_rate_policy: 3e-4
+    learning_rate_discriminator: 1e-3
+    learning_rate_value: 1e-3
+    hidden_dims: [64, 64]
+
+# Evaluation settings
+evaluation:
+  num_episodes: 50
+  deterministic: true
+  render: false
+
+# Logging and saving
+logging:
+  save_dir: "checkpoints"
+  log_interval: 10
+  save_interval: 50
